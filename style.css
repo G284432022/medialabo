@@ -1,0 +1,7 @@
+h1{
+    color: white;
+    text-shadow: navy 1px 0 10px;
+}
+h2{
+    background: linear-gradient(.25turn,white, #ffefaf);
+}
