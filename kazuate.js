@@ -13,6 +13,8 @@ hantei();
 hantei();
 hantei();
 
+let re = document.querySelector("p#result");
+
 // ボタンを押した後の処理をする関数 hantei() の定義
 function hantei() {
   // 将来ここでは 4 ではなくテキストボックスに指定された数値を yoso に代入する
@@ -24,7 +26,7 @@ function hantei() {
   kaisu = kaisu + 1;
   console.log(kaisu + "回目の予想: 4");
   if(kotae == yoso){
-    console.log("正解です．おめでとう!");
+    re.textContent="正解です．おめでとう!";
   }else if(kotae > yoso){
     console.log("まちがい．答えはもっと大きいですよ");
   }else if(kotae < yoso){
