@@ -80,16 +80,6 @@ let data = {
 };
 
 /////////////////// 課題3-2 はここから書き始めよう
-const resu = data.list.g1.map(item => {
-  return {
-    service: {
-      id: item.service.id,
-      name: item.service.name
-    },
-    genres: item.genres
-  };
-});
-console.log(results);
-let re =document.querySelector("dic#result");
-re.textContent=results;
-
+let data_ = document.querySelector('today#t');
+//表の位置
+let search = document.querySelector('p#channel');
