@@ -1,51 +1,87 @@
-<!DOCTYPE html>x
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>My test page</title>
-    <script src="tv-program.js" defer></script>
-    
-  </head>
-  <body>
-    <h1>NHKの番組</h1>
-    <label for="channel"></label>
-    <select id="channel" name="channel">
-      <option value="">ちゃんねる</option>
-      <option value="n">NHK総合</option>
-      <optiln value="e">Eテレ</optiln>
-    </select>
-    <lavel for="genre"></lavel>
-    <select id="genre" name="genre">
-      <option value="">ジャンル</option>
-      <option value="0000">ニュース・報道</option>
-      <option value="0100">スポーツ</option>
-      <option value="0205">情報・ワイドショー</option>
-      <option value="0300">ドラマ</option>
-      <option value="0409">音楽</option>
-      <option value="0502">バラエティ</option>
-      <option value="0600">映画</option>
-      <option value="0700">アニメ</option>
-      <option value="0800">ドキュメンタリー・教養</option>
-      <option value="0903">劇場・公演</option>
-      <option value="1000">趣味・教養</option>
-      <option value="1100">福祉</option>
-    </select>
-    <button id="print">検索</button>
-    <p id="search_result">ff</p>
-    <p>検索結果</p>
-  <table border="1">
-    <thead>
-      <tr>
-          <th>番組</th>
-          <th>開始時刻</th>
-          <th>終了時刻</th>
-          <th>ちゃんねんる</th>
-          <th>サブタイトル</th>
-          <th>説明</th>
-          <th>出演者</th>
-      </tr>
-    </thead>
-  </table>
-  </body>
-</html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            放送番組
+        </title>
+        <link rel="stylesheet" href="project.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+        <script src="tv-program.js" defer></script>
+    </head>
+    <body>
+    </div>
+        <h1>NHK番組検索</h1>
+        <p></p>
+        <p id="ex"></p>
 
+        <label for="s_tv_search"></label>
+            <select name="s_tv_search" id="s_tv_search">
+                <option value="">ちゃんねる</option>
+
+                <option value="g1">NHK総合1</option>
+                <option value="e1">Eテレ1</option>
+
+            </select>
+
+        <!--
+            ジャンルで検索、valueは以下の通り
+            0000 ... ニュース・報道
+            0100 ... スポーツ
+            0205 ... 情報・ワイドショー
+            0300 ... ドラマ
+            0409 ... 音楽
+            0502 ... バラエティ
+            0600 ... 映画
+            0700 ... アニメ
+            0800 ... ドキュメンタリー・教養
+            0903 ... 劇場・公演
+            1000 ... 趣味・教育
+            1100 ... 福祉
+
+        -->
+
+        <label for="g_tv_search"></label>
+            <select name="g_tv_search" id="g_tv_search">
+                <option value="">ジャンル</option>
+                <option value="0000">ニュース・報道</option>
+                <option value="0100">スポーツ</option>
+                <option value="0205">情報・ワイドショー</option>
+                <option value="0300">ドラマ</option>
+                <option value="0409">音楽</option>
+                <option value="0502">バラエティ</option>
+                <option value="0600">映画</option>
+                <option value="0700">アニメ</option>
+                <option value="0800">ドキュメンタリー・教養</option>
+                <option value="0903">劇場・公演</option>
+                <option value="1000">趣味・教育</option>
+                <option value="1100">福祉</option>
+
+            </select>
+        <button id="print">検索</button>
+        <p id="search_result">検索結果</p>
+        <p></p>
+
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>番組名</th>
+                    <th>開始時刻</th>
+                    <th>終了時刻</th>
+                    <th>チャンネル</th>
+                    <th>サブタイトル</th>
+                    <th>説明</th>
+                    <th>出演者</th>
+                </tr>
+
+            </thead>
+            <tbody id="tv_p">
+                <!--javascriptによって、ここにtitle等が追加される-->
+            </tbody>
+
+
+        </table>
+
+    </body>
+</html>

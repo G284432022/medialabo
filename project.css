@@ -8,7 +8,7 @@ h2{
     background: linear-gradient(.25turn,white, #ffefaf);
 }
 html{
-    background-color:coral;
+    background-color:rgb(23, 167, 228);
 }
 .bg_test {
     background-image: url(/Users/kawakamihiroshi/Documents/medialabo/iedomo02_vb1920x1080.jpg);    /* 背景画像指定 */

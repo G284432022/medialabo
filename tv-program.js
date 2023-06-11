@@ -80,62 +80,120 @@ let data = {
 };
 
 /////////////////// 課題3-2 はここから書き始めよう
-let data_ = document.querySelector('today#tv_p');
-//検索結果表示位置
-let search_result_potision = document.querySelector('p#channel');
+/*
+0000 ... ニュース・報道
+0100 ... スポーツ
+0205 ... 情報・ワイドショー
+0300 ... ドラマ
+0409 ... 音楽
+0502 ... バラエティ
+0600 ... 映画
+0700 ... アニメ
+0800 ... ドキュメンタリー・教養
+0903 ... 劇場・公演
+1000 ... 趣味・教育
+1100 ... 福祉
+*/
 
-//イベントハンドラの登録
-let search = document.querySelector('button#print');
-search.addEventListener('click',result);//ここで登録
+let i = 0;
+
+//表の位置を検索
+let data_posi = document.querySelector('tbody#tv_p');
 
 
-//結果
-let cha,gen;
-function result(){
-  let a1 = document.querySelector('select#channnel');
-  let a2 = document.querySelector('select#genre');
-  //ちゃんねる、ジャンル代入 url用
-  cha = a1.value;
-  gen = a2.value;
-  //空の場合「未選択」と表示
-  if(cha === ''|| gen === ''){
-    search_result_potision.textContent='未選択';
-  }else{
-    send_result();
+//////////////////////検索について/////////////////////
+
+//検索結果の表示位置
+let search_r_posi = document.querySelector('p#search_result');
+
+
+//検索ボタンによるイベント
+let search_posi = document.querySelector('button#print');
+search_posi.addEventListener('click', search);
+
+
+
+let ser, genre;
+//検索結果の表示
+function search() {
+  let k1 = document.querySelector('select#s_tv_search');
+  let k2 = document.querySelector('select#g_tv_search');
+
+  //入力されたチャンネル、ジャンルを代入 → 検索時のURLで使用
+  ser = k1.value;
+  genre = k2.value;
+
+  //検索時に、チャンネルまたはジャンルが未入力の場合は文を表示、通信はしない
+
+  if(ser === "" || genre === ""){
+    search_r_posi.textContent = "チャンネルとジャンルを選択してください。";
   }
+  else{
+    sendRequest();
+ 
+  }
+
 }
-function send_result(){
-  let url = 'https://www.nishita-lab.org/web-contents/jsons/nhk/'+cha+'-'+gen+'-j.json';
-  //通信開始
-  axios.get(url)  
-    .then(showResult)
-    .chath(showError)
-    .then(finish);
+
+
+// 通信を開始する処理
+
+
+function sendRequest(){
+  let url='https://www.nishita-lab.org/web-contents/jsons/nhk/' + ser + '-' + genre + '-j.json';
+  //+で文字列をつなぐ
+
+  // 通信開始
+  axios.get(url)
+    .then(showResult)   // 通信成功
+    .catch(showError)   // 通信失敗
+    .then(finish);      // 通信の最後の処理
 }
-// 通信が成功した時の処理
+
+//通信が成功した場合
+
+
+//サーバから送られたデータを代入
 let redata;
-function showResult(resp){
-  //サーバーから送られてきたデータを出力
+
+function showResult(resp) {
+  //サーバから送られてきたデータを出力
+
   redata = resp.data;
-  // data が文字列型なら，オブジェクトに変換する
-	if (typeof data === 'string') {
-		redata = JSON.parse(redata);
-	}
+
+  //dataが文字列型なら、オブジェクトに変換する
+  if (typeof redata === 'string') {
+    redata = JSON.parse(redata);
+  }
+
   //結果の確認用
   console.log(redata);
-  console.log(cha);
-  console.log(gen);
+  console.log(ser);
+  console.log(genre);
 
   print_result(redata);
+
+
+
+
 }
-//エラー発生時
+
+
+//通信エラーが発生した場合
 function showError(err){
-  console.log(eer);
-  search_result_potision.textContent="通信エラーが発生しました";
+  console.log(err);
+  search_r_posi.textContent = "通信エラーが発生しました。";
 }
-function finish() {
-	console.log('Ajax 通信が終わりました');
+
+//通信の最後に実行する処理
+function finish(){
+  console.log('Ajax 通信が終わりました');
 }
+
+
+
+//////////////////検索結果の確認/////////////////
+
 
 function print_result(){
   i = 0;
